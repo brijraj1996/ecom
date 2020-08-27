@@ -33,19 +33,18 @@
                 </strong>
             </h2>
             <br>
-            <a href="{{route('shirts')}}"><button class="button large">Check out My Shirts</button></a>
+            <a href="{{route('products')}}"><button class="button large">Check out My Shirts</button></a>
         </section>
         <br/>
         <div class="subheader text-center">
              <h2>
-            Mykart Latest Shirts
+            Mykart Latest Products:
         </h2>
-        </div>
-       
-        <!-- Latest SHirts -->
-        <div class="row">
+
+         <!-- Latest SHirts -->
+         <div class="row">
             <div class="small-3 columns">
-                @foreach ($shirts as $product)
+                @foreach ($products as $product)
                     
                
                 <div class="item-wrapper">
@@ -56,7 +55,7 @@
                             <img src="{{asset($product->image)}}"/>
                         </a>
                     </div>
-                <a href="{{route('shirt', ['id' => $product->id])}}">
+                <a href="{{route('product', ['id' => $product->id])}}">
                         <h3>
                             {{$product->name}}
                         </h3>
@@ -65,23 +64,25 @@
                         ₹{{$product->price}}
                     </h5>
                     
-                    <p>
-                        {{-- {{$product->price}} --}}
-                    </p>
+               
                   
                 </div>
                 @endforeach
                 
             </div>
+        </div>
+       
+       
             
             
            
         <!-- Footer -->
+
+      
+    </body>  
+    
         
     
-
-    <script src="dist/js/vendor/jquery.js"></script>
-    <script src="dist/js/app.js"></script>
-    </body>
+    
 </html>
 @endsection

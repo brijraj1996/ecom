@@ -11,22 +11,22 @@ class FrontController extends Controller
     //
     public function index()
     {
-        $shirts=Product::all();
+        $products=Product::all();
 
-        return view('front.home',compact('shirts'));
+        return view('front.home',compact('products'));
     }
 
-    public function shirts()
+    public function products()
     {
-        $shirts=Product::all();
-        return view('front.shirts',compact('shirts'));
+        $products=Product::all();
+        return view('front.products',compact('products'));
         
     }
 
-    public function shirt($id)
+    public function product($id)
     {
         $product = Product::find($id);
-        return view('front.shirt', compact('product'));
+        return view('front.product', compact('product'));
     }
 
     public function login()

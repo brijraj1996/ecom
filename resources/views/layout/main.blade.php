@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
     <head>
@@ -15,7 +16,7 @@
 
     </head>
     <body>
-       
+           
         <div  class="top-bar">
             <div style="color:white" class="top-bar-left">
                 <h4 class="brand-title">
@@ -29,7 +30,7 @@
             <div class="top-bar-right">
                 <ol class="menu">
                     <li>
-                    <a href="{{route('shirts')}}">
+                    <a href="{{route('products')}}">
                             SHIRTS
                         </a>
                     </li>
@@ -51,7 +52,10 @@
                 
             </div>
         </div>
-        @yield('content')
+        
+        @yield('content')  
+
+          
         <!-- Footer -->
        
         <br>
