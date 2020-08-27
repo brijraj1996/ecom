@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function () {
+    Route::get('/', function() {
+        return view('admin.index');
+    })->name('admin.index');
+    Route::resource('categories', 'CategoryController');
+    Route::get('orders/{type?}', 'OrderController@Orders');
+    
+    
+    Route::resource('products', 'ProductController');
+
+});
+
 Route::get('/', 'FrontController@index')->name('home');
 Route::get('/products/{id}', 'FrontController@product')->name('product');
 Route::get('/products', 'FrontController@products')->name('products');
@@ -27,15 +39,3 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 
 
-
-Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function () {
-    Route::get('/', function() {
-        return view('admin.index');
-    })->name('admin.index');
-    Route::resource('categories', 'CategoryController');
-    Route::get('orders/{type?}', 'OrderController@Orders');
-    
-    
-    Route::resource('products', 'ProductController');
-
-});
