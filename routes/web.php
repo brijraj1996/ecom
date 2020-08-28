@@ -19,6 +19,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     })->name('admin.index');
     Route::resource('categories', 'CategoryController');
     Route::get('orders/{type?}', 'OrderController@Orders');
+    #Route::get('validation', 'ImageValidation@rules');
     
     
     Route::resource('products', 'ProductController');

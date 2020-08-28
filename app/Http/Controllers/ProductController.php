@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Product;
 use App\Category;
+use App\Http\Requests\ImageValidation;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -36,21 +37,40 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ImageValidation $request)
     {
        
 
         //validation
 
-        $this->validate($request,[
-            'name'=>'required',
-            'description'=>'required',
-            'category_id'=>'required',
-            'price'=>'required',
-            'image'=>'required',
-        ]);
+        // $this->validate($request,[
+        //     'name'=>'required',
+        //     'description'=>'required',
+        //     'category_id'=>'required',
+        //     'price'=>'required',
+        //     'image'=>'required',
+        // ]);
         
         
+        // $formInput=$request->except('image');
+        // $image=$request->image;
+        // if($image)
+        // {
+        //     $imageName=$image->getClientOriginalName();
+        //     $image->move('images',$imageName);
+
+        // }
+        // $formInput['image'] = '/images/'.$imageName;
+      
+        // Product::create($formInput);
+        // return redirect()->route('admin.index');
+
+
+       
+
+
+        // $validated = $request->validated();
+
         $formInput=$request->except('image');
         $image=$request->image;
         if($image)

@@ -3,7 +3,13 @@
 @section('content')
 
 
-
+@if($errors->any())
+    <div class="card bg-danger text-white">
+        @foreach ($errors->all() as $error)
+            <div>{{ $error }}</div>
+        @endforeach
+    </div>
+@endif
 <div class="card">
     <div class="mt-5">
         <h3> Add Product</h3>

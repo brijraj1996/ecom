@@ -1,6 +1,6 @@
 @extends('layout.main')
    
-@section('title','Shirts')
+@section('title','Products')
 @section('content')   
 
 <!doctype html>
