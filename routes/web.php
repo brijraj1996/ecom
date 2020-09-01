@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +19,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     Route::get('/', function() {
         return view('admin.index');
     })->name('admin.index');
+     Route::resource('products', 'ProductController');
+    Route::get('/products/delete','ProductsController@destroy');
     Route::resource('categories', 'CategoryController');
     Route::get('orders/{type?}', 'OrderController@Orders');
     #Route::get('validation', 'ImageValidation@rules');
     
     
-    Route::resource('products', 'ProductController');
+    
+    
+   
 
 });
 

@@ -11,8 +11,21 @@ class Product extends Model
 
     public function category()
     {
-        return $this->BelongsTo(Categories::class);
+        return $this->BelongsTo(Category::class);
     }
 
-    
+    public static function createProduct($request)
+    {
+        $formInput=$request->except('image');
+        $image=$request->image;
+        if($image)
+        {
+            $imageName=$image->getClientOriginalName();
+            $image->move('images',$imageName);
+
+        }
+        $formInput['image'] = '/images/'.$imageName;
+      
+        return self::create($formInput);
+    }
 }

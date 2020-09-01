@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products=Product::all();
+        $products = Product::with('category')->get();
         return view('admin.products.index',compact('products'));
     }
 
@@ -39,52 +39,9 @@ class ProductController extends Controller
      */
     public function store(ImageValidation $request)
     {
-       
+        $product = Product::createProduct($request);
 
-        //validation
-
-        // $this->validate($request,[
-        //     'name'=>'required',
-        //     'description'=>'required',
-        //     'category_id'=>'required',
-        //     'price'=>'required',
-        //     'image'=>'required',
-        // ]);
-        
-        
-        // $formInput=$request->except('image');
-        // $image=$request->image;
-        // if($image)
-        // {
-        //     $imageName=$image->getClientOriginalName();
-        //     $image->move('images',$imageName);
-
-        // }
-        // $formInput['image'] = '/images/'.$imageName;
-      
-        // Product::create($formInput);
-        // return redirect()->route('admin.index');
-
-
-       
-
-
-        // $validated = $request->validated();
-
-        $formInput=$request->except('image');
-        $image=$request->image;
-        if($image)
-        {
-            $imageName=$image->getClientOriginalName();
-            $image->move('images',$imageName);
-
-        }
-        $formInput['image'] = '/images/'.$imageName;
-      
-        Product::create($formInput);
-        return redirect()->route('admin.index');
-
-       
+        return redirect()->route('admin.index');      
     }
 
 
@@ -99,7 +56,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
-        return view('front.shirt', compact('product'));
+        return view('front.product', compact('product'));
     }
 
     /**
@@ -108,9 +65,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+        return view('admin.products.edit', compact('product','categories'));
     }
 
     /**
@@ -120,9 +78,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ImageValidation $request,Product $product)
     {
-        //
+        #dd($product);
+       $product->update($request->all());
+       return redirect(route('products.index'))->with('message','Product updated');
     }
 
     /**
@@ -133,8 +93,17 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $del = Product::findOrFail($id);
+        $del->delete();
+        return redirect()->back();
+
+
     }
+
+    
+
+    
+
 
     
 }

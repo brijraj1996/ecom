@@ -15,4 +15,14 @@ class Category extends Model
         return $this->hasMany(Product::class);
     }
 
+
+    public static function createCategory($request)
+    {
+        $categories = new self();
+
+        $categories->name = request('name');
+
+        $categories->save();
+    }
+
 }
