@@ -19,6 +19,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     Route::get('/', function() {
         return view('admin.index');
     })->name('admin.index');
+    Route::post('orders/deliver{orderId}','OrderController@orderDeliver')->name('order.deliver');
+    Route::get('orders/{type?}','OrderController@Orders');
+    
     Route::get('upload/{id}', 'UploadController@uploadform');
     Route::post('upload/submit','UploadController@uploadSubmit');
     // Route::post('/upload', 'UploadController@uploadSubmit');
