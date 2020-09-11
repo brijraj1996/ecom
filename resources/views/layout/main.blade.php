@@ -23,20 +23,25 @@
                 <a href="{{route('admin.index')}}">
                         <i class="fa fa-home fa-lg" aria-hidden="true">
                         </i>
-                       Mykart Shirts
+                       Mykart Store
                     </a>
                 </h4>
             </div>
             <div class="top-bar-right">
                 <ol class="menu">
                     <li>
-                    <a href="{{route('products')}}">
-                            SHIRTS
+                    <a href="{{route('cart.index')}}"> 
+                        <i class="fa fa-shopping-cart fa-2x" aria-hidden="true">
+                        </i>
+                            CART
+                            <span class = "alert badge">
+                                {{ShoppingCart::count()}}
+                            </span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            CONTACT
+                            CONTACT US
                         </a>
                     </li>
 

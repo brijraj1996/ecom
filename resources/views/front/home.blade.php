@@ -33,7 +33,7 @@
                 </strong>
             </h2>
             <br>
-            <a href="{{route('products')}}"><button class="button large">Check out My Shirts</button></a>
+            <a href="{{route('products')}}"><button class="button large">Check out the products here!</button></a>
         </section>
         <br/>
        

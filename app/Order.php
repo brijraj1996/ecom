@@ -3,21 +3,41 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Overtrue\LaravelShoppingCart\Cart;
+use App\User;
 
 class Order extends Model
 {
     //
-    protected $filable=['total','delivered'];
+    protected $fillable=['total','delivered', 'user_id'];
 
     public function orderItems()
     {
-        return $this->belongsToMany([Product::class]);
+        return $this->belongsToMany([Product::class])->withPivot('qty','total');
     }
 
     public static function createOrder()
     {
-        $user=Auth::user();
-        //$order=$user->create->orders()->create()
+      
+       $order= Order::Create([
+           'user_id' => Auth::Id(),
+           'delivered'=>0,
+           'total'=>\ShoppingCart::total()
+       ]);
+        
+       
+       $cartItems=\ShoppingCart::all();
+     
+        foreach($cartItems as $cartItem)
+        {
+            //dd();
+            $order->orderItems()->attach($cartItem->id,[
+                'qty'=>$cartItem->qty,
+                'total'=>$cartItem->qty*$cartItem->total
+            ]);
+        }
+        
     }
 
     

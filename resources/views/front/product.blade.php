@@ -28,7 +28,7 @@
                             {{$product->description}}
                         </p>
 
-                     <div class="row">
+                     <div class="row"> 
                 
                         <div class="large-12 columns">
                             <label>
@@ -49,11 +49,13 @@
 
                   
 
-                    @auth
+                    {{-- @auth
                     <a href="{{route('success')}}" class="button  expanded">Buy now</a>
                     @else
                         <a href="{{ route('login') }}">Login to buy</a>
-                        @endauth
+                        @endauth --}}
+
+                    <a href="{{route('cart.edit',$product->id)}}">Add to cart</a>
                 </div>        
             
             </div>

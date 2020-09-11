@@ -62,7 +62,7 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label>Image</label>
-                    <input type="file" class="form-control" name="image" >
+                    <input type="file" class="form-control" name="image[]" multiple="multiple" >
                     </div>
                 </div>
                

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ImageValidation extends FormRequest
+class addressvalid extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,14 +23,17 @@ class ImageValidation extends FormRequest
      */
     public function rules()
     {
+    
         return [
-        'name'=>'required',
-        'description'=>'required',
-        'category_id'=>'required',
-        'price'=>'required',
+            
+                // 'address' => ['required', 'unique:posts', 'max:255'],
+                // 'city' => ['required'],
+                // 'phone' => ['required'],
+                // 'zip' => ['required'],
+                // 'phone' => ['required'],
+                // 'state' => ['required'],
+           
         
         ];
-
-        
     }
 }

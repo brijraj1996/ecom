@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrdersTable extends Migration
+class AddUserToAddressTableNew extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
+        Schema::table('addresses', function (Blueprint $table) {
             $table->integer('user_id');
-            $table->tinyInteger('delivered');
-            $table->float('total');  
-            $table->timestamps();
         });
     }
 
@@ -29,6 +25,8 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::table('addresses', function (Blueprint $table) {
+            //
+        });
     }
 }

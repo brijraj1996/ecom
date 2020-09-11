@@ -17,6 +17,7 @@ class Product extends Model
     public static function createProduct($request)
     {
         $formInput=$request->except('image');
+        
         $image=$request->image;
         if($image)
         {
@@ -27,5 +28,10 @@ class Product extends Model
         $formInput['image'] = '/images/'.$imageName;
       
         return self::create($formInput);
+    }
+
+    public function photo()
+    {
+        return $this->hasMany(ProductPhoto::class);
     }
 }
