@@ -34,7 +34,7 @@
             <th>Category</th>
             <th>Edit</th>
             <th>Delete</th>      
-            <th>Add images</th>      
+            {{-- <th>Add images</th>       --}}
         </tr>
        @foreach  ($products as $product)
            
@@ -47,7 +47,7 @@
           <td><a href="{{route('products.edit',['product' =>$product->id])}}" class="btn btn-primary btn-mini">Edit Product</a></td>
           <form method ="POST" action="{{route('products.destroy',$product->id)}}">
           <td><button type="submit" class ="btn btn-sm btn-danger">Delete</a>  
-            <td><a href="{{url('admin/upload',['product' =>$product->id])}}" class="btn btn-primary btn-mini">Add images</a></td>  
+            {{-- <td><a href="{{url('admin/upload',['product' =>$product->id])}}" class="btn btn-primary btn-mini">Add images</a></td>   --}}
           @csrf
           @method('DELETE')
       

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\Category;
 use App\Http\Requests\ImageValidation;
+use App\Http\Requests\multipleImageValid;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -27,8 +28,8 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-
-        return view('admin.products.create',compact('categories'));
+        $product=Product::all();
+        return view('admin.products.create',compact('categories','product'));
     }
 
     /**
@@ -37,11 +38,15 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ImageValidation $request)
+    public function store(multipleImageValid $request)
     {
-        $product = Product::createProduct($request);
+        $validatedData=$request->validated();
+        $photosData = $request->photos;
 
-        return redirect()->route('admin.index');      
+        $product = Product::createProduct($validatedData, $photosData);
+        // if($product) {
+            return redirect()->route('admin.index');      
+        // }
     }
 
 
@@ -78,7 +83,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ImageValidation $request,Product $product)
+    public function update(multipleImageValid $request,Product $product)
     {
         #dd($product);
        $product->update($request->all());

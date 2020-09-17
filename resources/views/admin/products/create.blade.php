@@ -59,15 +59,21 @@
                     </div>
                 </div>
                
-                <div class="form-row">
+                {{-- <div class="form-row">
                     <div class="form-group">
                         <label>Image</label>
                     <input type="file" class="form-control" name="image[]" multiple="multiple" >
+                    
                     </div>
-                </div>
+                </div> --}}
+                    {{-- Product name: <br> --}}
+                    <br><br>
+                    Product photos (can attach more than one): <br>
+                    <input multiple="multiple" name="photos[]" type="file"> 
+                    <br><br>
                
                 
-                <button class="btn btn-primary">save</button>
+                <button type="submit" class="btn btn-primary">save</button>
             </form>
         </div>
      </div>

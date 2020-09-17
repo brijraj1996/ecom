@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Requests\multipleImageValid;
+
 
 class Product extends Model
 {
@@ -14,24 +16,28 @@ class Product extends Model
         return $this->BelongsTo(Category::class);
     }
 
-    public static function createProduct($request)
+    public static function createProduct($productData, $photos)
     {
-        $formInput=$request->except('image');
         
-        $image=$request->image;
-        if($image)
-        {
-            $imageName=$image->getClientOriginalName();
-            $image->move('images',$imageName);
+        $product= Product::create($productData);
 
+        foreach ($photos as $photo) {
+            $filename=$photo->getClientOriginalName();
+            $photo->move('images',$filename);
+
+            ProductPhoto::create([
+                'product_id' => $product->id,
+                'image_name' => $filename,
+                'image' => '/images/'.$filename
+                
+            ]); 
         }
-        $formInput['image'] = '/images/'.$imageName;
-      
-        return self::create($formInput);
-    }
+        return true;
 
+    }
     public function photo()
     {
         return $this->hasMany(ProductPhoto::class);
     }
+    
 }
